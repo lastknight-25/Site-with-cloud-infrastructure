@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloria</title>
+</head>
+<body>
+    <h1 id = 'site-name'> Welcome to VeloRIA </h1>
+
+
+    <button id="to-contact-page"> contact </button>
+    <button id="to-about-page"> about </button> 
+    <button id="to-product-page"> products </button>
+
+    <script>
+        const contactButton = document.querySelector('#to-contact-page')
+        const aboutButton = document.querySelector('#to-about-page')
+        const productButton = document.querySelector('#to-product-page')
+
+        contactButton.addEventListener('click', () => {
+            window.location.href = 'http://localhost:3000/contact'
+        })
+
+        aboutButton.addEventListener('click', () => {
+            window.location.href = 'http://localhost:3000/about'
+        })
+
+        productButton.addEventListener('click', () => {
+            window.location.href = 'http://localhost:3000/products'
+        })
+    </script>
+
+
+    <!-- <h5> HELLO </h5>
+    <button> want a message ? </button>
+    <script> 
+        const heading = document.querySelector('h5')
+        const button = document.querySelector('button')
+
+        button.addEventListener('click', () => {
+            fetch('http://localhost:3000/message')
+            .then(response => {
+                if(!response.ok){
+                    throw new Error('server ERROR: ${response.status} ${response.statusText}')
+                }
+                return response.json()
+            })
+            .then(data => {
+                heading.textContent = data.message
+            })
+            .catch(err => {
+                console.error(err)
+            })
+        })
+    </script>
+
+    <form id="contact-form">
+        <input id="name" placeholder="name">
+        <textarea id="message" placeholder="message"></textarea>
+        <button>Submit</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('contact-form')
+        const nameInput = document.getElementById('name')
+        const messageTextarea = document.getElementById('message')
+
+        form.addEventListener('submit', (e) =>{
+            e.preventDefault()
+
+            const name = nameInput.value
+            const message = messageTextarea.value
+
+            fetch('http://localhost:3000/message', {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({ name, message})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response from server', data) 
+            })
+        })
+    </script> -->
+</body>
+</html>

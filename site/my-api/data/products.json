@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Mouse",
+    "price": 19.99,
+    "image": "https://picsum.photos/seed/1/400/300"
+  },
+  {
+    "id": 2,
+    "name": "Mechanical Keyboard",
+    "price": 79.50,
+    "image": "https://picsum.photos/seed/2/400/300"
+  },
+  {
+    "id": 3,
+    "name": "USB-C Hub",
+    "price": 34.00,
+    "image": "https://picsum.photos/seed/3/400/300"
+  },
+  {
+    "id": 4,
+    "name": "Noise-Cancelling Headphones",
+    "price": 129.99,
+    "image": "https://picsum.photos/seed/4/400/300"
+  }
+]
