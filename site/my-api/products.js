@@ -35,8 +35,20 @@ router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
   const products = JSON.parse(fs.readFileSync("./data/products.json"));
 
-  const RequestedProduct = products.find((product) => product.id === id)
-  res.json(RequestedProduct)
+  const requestedProduct = products.find(p => p.id === id);
+
+  if (!requestedProduct) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+
+  const cleanProduct = {
+    id: requestedProduct.id,
+    name: requestedProduct.name,
+    price: requestedProduct.price,
+    image: requestedProduct.image
+  };
+
+  res.json(cleanProduct);
 });
 
 // router.post('/', (req, res) =>{

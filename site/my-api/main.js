@@ -20,11 +20,11 @@ app.use(express.json())
 app.use('/products', productsRouter)
 
 
-// Define a route for HTTP GET requests to the root URL ('/')
-// This route sends a simple text response to the client
-app.get('/', (req, res) => {
-  res.send('Home Page');
-});
+// // Define a route for HTTP GET requests to the root URL ('/')
+// // This route sends a simple text response to the client
+// app.get('/', (req, res) => {
+//   res.send('Home Page');
+// });
 
 
 app.get('/about', (req, res) => {
@@ -36,16 +36,16 @@ app.get('/contact', (req, res) => {
   res.send('contact Page');  
 });
 
-app.get('/message', (req, res) => {
-  res.json({ message: 'this a message from the backend'})
-});
+// app.get('/message', (req, res) => {
+//   res.json({ message: 'this a message from the backend'})
+// });
 
-app.post('/message', (req, res) => {
-  const {name, message} = req.body
+// app.post('/message', (req, res) => {
+//   const {name, message} = req.body
 
-  console.log('New message :', name, message)
-  res.json({ message: 'Thanks for the message bozo'})
-});
+//   console.log('New message :', name, message)
+//   res.json({ message: 'Thanks for the message bozo'})
+// });
 
 // Start the server on port 3000 and log a message to the console
 app.listen(3000, () => console.log('API running on port 3000'));
