@@ -11,6 +11,8 @@ const app = express();
 //Routing 
 const productsRouter = require('./products')
 
+const path = require('path');
+
 // Whitelisitng
 app.use(cors({
   origin : ['http://127.0.0.1:5500', 'http://localhost:5500']
@@ -22,9 +24,9 @@ app.use('/products', productsRouter)
 
 // // Define a route for HTTP GET requests to the root URL ('/')
 // // This route sends a simple text response to the client
-// app.get('/', (req, res) => {
-//   res.send('Home Page');
-// });
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
+});
 
 
 app.get('/about', (req, res) => {
