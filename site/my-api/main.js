@@ -20,13 +20,14 @@ app.use(cors({
 
 app.use(express.json())
 app.use('/products', productsRouter)
+app.use(express.static(path.join(__dirname, '..')));
 
 
 // // Define a route for HTTP GET requests to the root URL ('/')
 // // This route sends a simple text response to the client
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
-});
+//app.get('/', (req, res) => {
+//  res.sendFile(path.join(__dirname, '../index.html'));
+//});
 
 
 app.get('/about', (req, res) => {

@@ -7,8 +7,10 @@ const router = express.Router()
 const fs = require("fs");
 const Ajv = require("ajv");
 
-const schema = JSON.parse(fs.readFileSync("./schemas/products.schema.json"));
-const products = JSON.parse(fs.readFileSync("./data/products.json"));
+
+const path = require('path');
+const schema = JSON.parse(fs.readFileSync(path.join(__dirname, 'schemas/products.schema.json')));
+const products = JSON.parse(fs.readFileSync(path.join(__dirname, "./data/products.json")));
 
 const ajv = new Ajv();
 const validate = ajv.compile(schema);
@@ -20,7 +22,6 @@ products.forEach(p => {
 });
 
 router.get('/', (req, res) => {
-  const products = JSON.parse(fs.readFileSync("./data/products.json"));
     const cleanProducts = products.map(p => ({
     id: p.id,
     name: p.name,
@@ -33,7 +34,6 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id)
-  const products = JSON.parse(fs.readFileSync("./data/products.json"));
 
   const requestedProduct = products.find(p => p.id === id);
 
