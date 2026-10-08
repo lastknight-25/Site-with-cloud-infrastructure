@@ -23,8 +23,10 @@ data "aws_ami" "al2023" {
 }
 
 resource "aws_instance" "first_server" {
-  ami           = data.aws_ami.al2023.id
-  instance_type = "t3.micro"
+  ami                    = data.aws_ami.al2023.id
+  instance_type          = "t3.micro"
+  subnet_id              = aws_subnet.public.id
+  vpc_security_group_ids = [aws_security_group.server.id]
 
   tags = {
     Name = "terraform-first-server"
