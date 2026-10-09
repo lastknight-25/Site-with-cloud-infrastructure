@@ -59,6 +59,14 @@ resource "aws_security_group" "server" {
     cidr_blocks = data.aws_ip_ranges.instance_connect.cidr_blocks
   }
 
+  ingress {
+    description = "HTTP from anywhere"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     description = "Allow all outbound traffic"
     from_port   = 0

@@ -27,6 +27,16 @@ resource "aws_instance" "first_server" {
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.server.id]
+  iam_instance_profile   = aws_iam_instance_profile.ec2.name
+
+  user_data_replace_on_change = true
+  user_data = <<-EOF
+    #!/bin/bash
+    dnf install -y docker
+    systemctl enable --now docker
+    aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin ${split("/", aws_ecr_repository.site.repository_url)[0]}
+    docker run -d --restart unless-stopped -p 80:3000 ${aws_ecr_repository.site.repository_url}:latest
+  EOF
 
   tags = {
     Name = "terraform-first-server"
@@ -35,4 +45,12 @@ resource "aws_instance" "first_server" {
 
 output "instance_id" {
   value = aws_instance.first_server.id
+}
+
+output "ecr_repository_url" {
+  value = aws_ecr_repository.site.repository_url
+}
+
+output "site_url" {
+  value = "http://${aws_instance.first_server.public_ip}"
 }
